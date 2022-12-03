@@ -1,0 +1,17 @@
+<h1> Edit Kitten </h1>
+
+<%= form_with model: @kitten do |f| %>
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name %><br>
+    <%= f.label :age, "Age" %>
+    <%= f.text_field :age %><br>
+    <%= f.label :cuteness, "Cuteness" %>
+    <%= f.text_field :cuteness %><br>
+    <%= f.label :softness, "Softness" %>
+    <%= f.text_field :softness %><br>
+    <%= submit_tag "Add a Kitten" %>
+  <% end %>
+
+  <br>
+
+  <p> <%= button_to "Delete Kitten", kitten, method: :delete %></p>

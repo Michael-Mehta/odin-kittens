@@ -2,10 +2,20 @@ class KittensController < ApplicationController
     
     def index
         @kittens = Kitten.all
+
+        respond_to do |format|
+
+            format.html
+            format.json {render :json => @kittens}
+        end
     end
 
     def show
         @kitten = Kitten.find(params[:id])
+        respond_to do |format|
+            format.html
+            format.json { render :json => @kitten }
+          end
     end
 
     def new
@@ -34,6 +44,7 @@ class KittensController < ApplicationController
         @kitten = Kitten.find(params[:id])
 
         if @kitten.update(kitten_params)
+            flash[:success] = "Kitten Updated!"
             redirect_to @kitten
         else
             flash.now[:error] = "Kitten details are invalid"
@@ -41,7 +52,10 @@ class KittensController < ApplicationController
         end
     end
 
-    def delete
+    def destroy
+        @kitten = Kitten.find(params[:id])
+        @kitten.destroy
+        flash[:success] = "Kitten Deleted!"
     end
 
 
